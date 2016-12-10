@@ -22,7 +22,6 @@ public class FireProperties : MonoBehaviour {
 	void Start () {
         changeFire = false;
         fireHealth = 100;
-        print(fireHealth);
         InvokeRepeating("fireHealthDrop", 0f, 1f);
         myFireState = FireState.FireSmall;
         myBoxCollider2D = GetComponent<BoxCollider2D>();
@@ -30,7 +29,10 @@ public class FireProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(fireHealth);
+        //  print(fireHealth);
+       // print(Screen.width);
+       // print(Screen.height);
+       // print("test");
 
         if (fireHealth < 101)
         {
@@ -45,7 +47,7 @@ public class FireProperties : MonoBehaviour {
             myFireState = FireState.FireLarge;
         }
 
-        SetFireState();
+            SetFireState();
         
 	}
 
@@ -57,41 +59,25 @@ public class FireProperties : MonoBehaviour {
     public void addFireHealth()
     {
         fireHealth += 10;
-        print(fireHealth);
+       // print(fireHealth);
     }
 
-    public void GrowFireState()
-    {
-        if ((int)myFireState < 2)
-        {
-            myFireState++;
-            changeFire = true;
-        }
-    }
-
-    public void ShrinkFireState()
-    {
-        if ((int)myFireState > 1)
-        {
-            myFireState--;
-            changeFire = true;
-        }
-    }
 
     void SetFireState()
     {
+        changeFire = false;
         switch (myFireState)
         {
             case FireState.FireSmall:
                 myBoxCollider2D.size = new Vector2(myBoxCollider2D.size.x, myBoxCollider2D.size.y);
                 break;
             case FireState.FireMedium:
-                myBoxCollider2D.size = new Vector2(myBoxCollider2D.size.x + .1F, myBoxCollider2D.size.y + .1F);
+                myBoxCollider2D.size = new Vector2(.5F, .5F);
                 break;
             case FireState.FireLarge:
-                myBoxCollider2D.size = new Vector2(myBoxCollider2D.size.x + .2F, myBoxCollider2D.size.y + .2F);
+                myBoxCollider2D.size = new Vector2(1F, 1F);
                 break;
         }
-        }
+     }
 
 }
