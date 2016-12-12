@@ -8,6 +8,8 @@ public class FireProperties : MonoBehaviour {
     private bool changeFire = false;
 
     private BoxCollider2D myBoxCollider2D;
+
+    Animator anim;
     
     public enum FireState
     {
@@ -25,6 +27,7 @@ public class FireProperties : MonoBehaviour {
         InvokeRepeating("fireHealthDrop", 0f, 1f);
         myFireState = FireState.FireSmall;
         myBoxCollider2D = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -48,6 +51,7 @@ public class FireProperties : MonoBehaviour {
         }
 
             SetFireState();
+        anim.SetInteger("FireState", (int)myFireState);
         
 	}
 
