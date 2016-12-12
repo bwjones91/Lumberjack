@@ -13,6 +13,7 @@ public class PlayerProperties : MonoBehaviour {
 	void Start () {
         myInventory = 0;
         myFireProperties = Fire.GetComponent<FireProperties>();
+   
 	}
 	
 	// Update is called once per frame

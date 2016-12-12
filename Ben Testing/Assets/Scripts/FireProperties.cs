@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireProperties : MonoBehaviour {
 
-    private static int fireHealth;
+    private int fireHealth;
 
     private bool changeFire = false;
 
@@ -29,7 +29,7 @@ public class FireProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //  print(fireHealth);
+          print(fireHealth);
        // print(Screen.width);
        // print(Screen.height);
        // print("test");
