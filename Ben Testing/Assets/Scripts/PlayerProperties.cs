@@ -18,7 +18,7 @@ public class PlayerProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        print("My Inventory: " + myInventory);
 	}
 
     public void dropLog()

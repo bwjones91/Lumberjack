@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: e0a41183e6232464bbfad12998bc75eb
-timeCreated: 1481578433
+guid: 692e2da78b690854fabf06b24f917988
+timeCreated: 1481584312
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: New Tree_0
+    21300000: Tree being chopped_0
+    21300002: Tree being chopped_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,10 +55,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Tree_0
+      name: Tree being chopped_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
+        y: 0
+        width: 29
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree being chopped_1
+      rect:
+        serializedVersion: 2
+        x: 30
         y: 0
         width: 29
         height: 59

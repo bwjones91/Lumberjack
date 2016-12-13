@@ -8,6 +8,8 @@ public class FireProperties : MonoBehaviour {
     private bool changeFire = false;
 
     private BoxCollider2D myBoxCollider2D;
+
+    Animator anim;
     
     public enum FireState
     {
@@ -25,16 +27,17 @@ public class FireProperties : MonoBehaviour {
         InvokeRepeating("fireHealthDrop", 0f, 1f);
         myFireState = FireState.FireSmall;
         myBoxCollider2D = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-          print(fireHealth);
+          print("Fire Health: " + fireHealth);
        // print(Screen.width);
        // print(Screen.height);
        // print("test");
 
-        if (fireHealth < 101)
+        if (fireHealth < 101 && fireHealth > 0)
         {
             myFireState = FireState.FireSmall;
         }
@@ -46,8 +49,14 @@ public class FireProperties : MonoBehaviour {
         {
             myFireState = FireState.FireLarge;
         }
+        else if (fireHealth < 1)
+        {
+            Destroy(gameObject);
+            print("You Lose!!!!");
+        }
 
             SetFireState();
+        anim.SetInteger("FireState", (int)myFireState);
         
 	}
 
