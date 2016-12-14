@@ -3,12 +3,12 @@ using System.Collections;
 
 public class SeedlingProperties : MonoBehaviour {
 
-    float seedlingNum = Random.Range(1, 10);
+    float seedlingNum; // = Random.Range(1, 10);
     public GameObject myTree;
 
 	// Use this for initialization
 	void Start () {
-        //var seedlingNum = Random.Range(10, 30);
+        seedlingNum = Random.Range(1, 2);
 
 	}
 	

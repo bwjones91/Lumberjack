@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TreeProperties : MonoBehaviour {
 
-    private float treeHealth = 10;
+    private float treeHealth = 2;
     private BoxCollider2D myBoxcollider2D;
     private PlayerController myPlayerController;
     private float chopDamage = 1;
@@ -27,13 +27,21 @@ public class TreeProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(treeHealth < 0)
+
+        anim.SetBool("Chopping", treeIsChopping);
+
+        if (treeHealth < 0)
         {
-            Destroy(gameObject);
+            
+            if (gameObject != null)
+            { 
             Instantiate(mySeedling, new Vector3(transform.position.x, transform.position.y - .207f, 0), Quaternion.identity);
             var logNum = Random.Range(1, 5);
             for (var i = 0; i < logNum; i++)
-            Instantiate(myLogs, new Vector3(transform.position.x, transform.position.y + 0.25f, 0), Quaternion.identity);
+                Instantiate(myLogs, new Vector3(transform.position.x, transform.position.y + 0.25f, 0), Quaternion.identity);
+            }
+            DestroyImmediate(gameObject);
+            
         }
 
         if (myPlayerController.chopInput == false)
@@ -41,7 +49,7 @@ public class TreeProperties : MonoBehaviour {
             treeIsChopping = false;
         }
 
-        anim.SetBool("Chopping", treeIsChopping);
+        
 
     }
 
