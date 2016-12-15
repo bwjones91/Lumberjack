@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerProperties : MonoBehaviour {
+public class PlayerProperties : MonoBehaviour
+{
 
     private int myInventory;
     public GameObject Fire;
@@ -9,17 +10,18 @@ public class PlayerProperties : MonoBehaviour {
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         myInventory = 0;
         myFireProperties = Fire.GetComponent<FireProperties>();
-   
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        print("My Inventory: " + myInventory);
-	}
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     public void dropLog()
     {

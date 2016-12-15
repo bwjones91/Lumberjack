@@ -32,7 +32,7 @@ public class FireProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-          print("Fire Health: " + fireHealth);
+        // print("Fire Health: " + fireHealth);
        // print(Screen.width);
        // print(Screen.height);
        // print("test");

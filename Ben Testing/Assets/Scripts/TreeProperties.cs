@@ -4,6 +4,19 @@ using System.Collections;
 public class TreeProperties : MonoBehaviour {
 
     private float treeHealth = 2;
+    public float TreeHealth
+    {
+        get
+        {
+            return treeHealth;
+        }
+        set
+        {
+            treeHealth = value;
+            OnValueChange();
+        }
+    }
+    private bool isDead = false;
     private BoxCollider2D myBoxcollider2D;
     private PlayerController myPlayerController;
     private float chopDamage = 1;
@@ -30,19 +43,7 @@ public class TreeProperties : MonoBehaviour {
 
         anim.SetBool("Chopping", treeIsChopping);
 
-        if (treeHealth < 0)
-        {
-            
-            if (gameObject != null)
-            { 
-            Instantiate(mySeedling, new Vector3(transform.position.x, transform.position.y - .207f, 0), Quaternion.identity);
-            var logNum = Random.Range(1, 5);
-            for (var i = 0; i < logNum; i++)
-                Instantiate(myLogs, new Vector3(transform.position.x, transform.position.y + 0.25f, 0), Quaternion.identity);
-            }
-            DestroyImmediate(gameObject);
-            
-        }
+       
 
         if (myPlayerController.chopInput == false)
         {
@@ -67,8 +68,25 @@ public class TreeProperties : MonoBehaviour {
 
     void gettingChopped()
     {
-        treeHealth -= chopDamage * Time.deltaTime;
+        TreeHealth -= chopDamage * Time.deltaTime;
         treeIsChopping = true;
     }
+
+    void OnValueChange()
+    {
+        if (treeHealth < 0 && !isDead)
+        {
+            isDead = true;
+            print("Destroy");
+           
+            Instantiate(mySeedling, new Vector3(transform.position.x, transform.position.y - .207f, 0), Quaternion.identity);
+            var logNum = Random.Range(1, 1);
+            for (var i = 0; i < logNum; i++)
+                Instantiate(myLogs, new Vector3(transform.position.x, transform.position.y + 0.25f, 0), Quaternion.identity);
+            Destroy(gameObject);
+
+        }
+    }
+
 
 }

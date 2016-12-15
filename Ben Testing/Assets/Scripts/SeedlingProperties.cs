@@ -8,18 +8,21 @@ public class SeedlingProperties : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        seedlingNum = Random.Range(1, 2);
-
-	}
+        seedlingNum = Random.Range(3, 5);
+        Invoke("seedlingGrow", seedlingNum);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        Invoke("seedlingGrow", seedlingNum);
-	}
+       
+    }
 
     void seedlingGrow()
     {
-        Destroy(gameObject);
-        Instantiate(myTree, new Vector3(transform.position.x, transform.position.y + .207f, 0), Quaternion.identity);
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+            Instantiate(myTree, new Vector3(transform.position.x, transform.position.y + .207f, 0), Quaternion.identity);
+        }
     }
 }
