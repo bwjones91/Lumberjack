@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
+
+[RequireComponent(typeof(Light))]
 public class FireProperties : MonoBehaviour {
 
     private int fireHealth;
@@ -10,7 +13,7 @@ public class FireProperties : MonoBehaviour {
     private BoxCollider2D myBoxCollider2D;
 
     Animator anim;
-    
+
     public enum FireState
     {
         FireSmall = 0,
@@ -20,15 +23,28 @@ public class FireProperties : MonoBehaviour {
 
     public FireState myFireState { get; private set; }
 
-	// Use this for initialization
-	void Start () {
+    private float minIntensity;
+    private float maxIntensity;
+
+    public Light fireLight;
+
+    float random;
+
+    public Text HealthText;
+        
+
+    // Use this for initialization
+    void Start () {
         changeFire = false;
         fireHealth = 100;
         InvokeRepeating("fireHealthDrop", 0f, 1f);
         myFireState = FireState.FireSmall;
         myBoxCollider2D = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-	}
+        random = Random.Range(0.0f, 65535.0f);
+        GetComponent<Light>();
+        SetHealthText();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -57,17 +73,37 @@ public class FireProperties : MonoBehaviour {
 
             SetFireState();
         anim.SetInteger("FireState", (int)myFireState);
-        
-	}
+
+        if (myFireState == FireState.FireSmall)
+        {
+            minIntensity = .5f;
+            maxIntensity = 1f;
+        }
+        if (myFireState == FireState.FireMedium)
+        {
+            minIntensity = 1f;
+            maxIntensity = 1.5f;
+        }
+        if (myFireState == FireState.FireLarge)
+        {
+            minIntensity = 1.5f;
+            maxIntensity = 2.5f;
+        }
+        float noise = Mathf.PerlinNoise(random, Time.time);
+        fireLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, noise);
+
+    }
 
     void fireHealthDrop()
     {
         fireHealth--;
+        SetHealthText();
     }
 
     public void addFireHealth()
     {
         fireHealth += 10;
+        SetHealthText();
        // print(fireHealth);
     }
 
@@ -88,5 +124,10 @@ public class FireProperties : MonoBehaviour {
                 break;
         }
      }
+
+    void SetHealthText()
+    {
+        HealthText.text = fireHealth.ToString();
+    }
 
 }
