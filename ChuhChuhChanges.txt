@@ -1,0 +1,14 @@
+*********************************************************************
+****************       	Upcoming Changes	*********************
+*********************************************************************
+
+
+*Smoke jfrom fire/ light from fire
+*Parallax background
+*Different types of trees
+*Picking up and replanting seedlings
+*UI with fire health/inventory
+*Infinite/looping scene/Generating scene
+*Grass that flattens
+*Pick up torch to light the way
+*New wood increases torch Times
