@@ -26,7 +26,7 @@ public class GroundGenerator : MonoBehaviour
         if (transform.position.x > generationPointRight.transform.position.x)
         {
             Instantiate(theGroundSection, generationPointRight.transform.position, generationPointRight.transform.rotation);
-            generationPointRight.transform.position = new Vector3(generationPointRight.transform.position.x + groundWidth, generationPointRight.transform.position.y, generationPointRight.transform.position.z);
+            generationPointRight.transform.position = new Vector3(generationPointRight.transform.position.x + groundWidth/2, generationPointRight.transform.position.y, generationPointRight.transform.position.z);
             
         }
 
