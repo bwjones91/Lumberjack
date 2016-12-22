@@ -10,6 +10,7 @@ public class PlayerProperties : MonoBehaviour
     public GameObject Fire;
     private FireProperties myFireProperties;
 
+    public Text BeardText;
     public Text InventoryText;
 
     private float minIntensity = .5f;
@@ -30,6 +31,7 @@ public class PlayerProperties : MonoBehaviour
         myFireProperties = Fire.GetComponent<FireProperties>();
         beardHealth = 0;
         InvokeRepeating("beardHealthDrop", 0f, 1f);
+        SetBeardText();
         SetInventoryText();
         random = Random.Range(0.0f, 65535.0f);
         GetComponent<Light>();
@@ -57,6 +59,7 @@ public class PlayerProperties : MonoBehaviour
         {
             addBeardHealth();
         }
+        SetBeardText();
     }
 
     public void dropLog()
@@ -73,6 +76,11 @@ public class PlayerProperties : MonoBehaviour
     {
         myInventory++;
         SetInventoryText();
+    }
+
+    void SetBeardText()
+    {
+        BeardText.text = beardHealth.ToString();
     }
 
     void SetInventoryText()

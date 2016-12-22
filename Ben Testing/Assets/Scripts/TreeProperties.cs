@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TreeProperties : MonoBehaviour {
 
-    private float treeHealth = 2;
+    private float treeHealth = 5;
     public float TreeHealth
     {
         get
@@ -80,7 +80,7 @@ public class TreeProperties : MonoBehaviour {
             print("Destroy");
            
             Instantiate(mySeedling, new Vector3(transform.position.x, transform.position.y - .207f, 0), Quaternion.identity);
-            var logNum = Random.Range(1, 1);
+            var logNum = Random.Range(1, 3);
             for (var i = 0; i < logNum; i++)
                 Instantiate(myLogs, new Vector3(transform.position.x, transform.position.y + 0.25f, 0), Quaternion.identity);
             Destroy(gameObject);

@@ -8,7 +8,7 @@ public class SeedlingProperties : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        seedlingNum = Random.Range(3, 5);
+        seedlingNum = Random.Range(30, 60);
         Invoke("seedlingGrow", seedlingNum);
     }
 	
