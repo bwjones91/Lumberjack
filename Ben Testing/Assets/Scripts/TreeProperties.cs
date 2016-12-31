@@ -41,8 +41,10 @@ public class TreeProperties : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        anim.SetBool("Chopping", treeIsChopping);
-
+        if (anim != null)
+        {
+            anim.SetBool("Chopping", treeIsChopping);
+        }
        
 
         if (myPlayerController.chopInput == false)
