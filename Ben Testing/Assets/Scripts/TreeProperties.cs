@@ -28,6 +28,14 @@ public class TreeProperties : MonoBehaviour {
     public GameObject mySeedling;
 
     bool treeIsChopping;
+    public bool TreeIsChopping
+    {
+        get
+        {
+            return treeIsChopping;
+        }
+    }
+  
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +44,8 @@ public class TreeProperties : MonoBehaviour {
         myPlayerController = lumberjack.GetComponent<PlayerController>();
         anim = GetComponent<Animator>();
         treeIsChopping = false;
+
+        
 	}
 	
 	// Update is called once per frame

@@ -53,7 +53,6 @@ public class PlayerProperties : MonoBehaviour
         }
         float noise = Mathf.PerlinNoise(random, Time.time);
         fireLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, noise);
-        print(beardHealth);
         anim.SetInteger("beardHealth", beardHealth);
         if(isTriggered)
         {
