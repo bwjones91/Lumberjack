@@ -10,7 +10,7 @@ public class GroundGenerator : MonoBehaviour
 
    
     private float groundWidth;
-    private 
+    private float groundHeight;
 
 
     // Use this for initialization
@@ -18,6 +18,8 @@ public class GroundGenerator : MonoBehaviour
     {
         groundWidth = theGroundSection.GetComponent<Collider2D>().bounds.size.x;
         print(groundWidth);
+        groundWidth = 1.28F;
+        groundHeight = 1.76F;
     }
 
     // Update is called once per frame
@@ -25,8 +27,10 @@ public class GroundGenerator : MonoBehaviour
     {
         if (transform.position.x > generationPointRight.transform.position.x)
         {
-            Instantiate(theGroundSection, generationPointRight.transform.position, generationPointRight.transform.rotation);
-            generationPointRight.transform.position = new Vector3(generationPointRight.transform.position.x + groundWidth/2, generationPointRight.transform.position.y, generationPointRight.transform.position.z);
+          
+            Instantiate(theGroundSection, new Vector2(generationPointRight.transform.position.x, generationPointRight.transform.position.y), theGroundSection.transform.rotation);
+
+            generationPointRight.transform.position = new Vector3(generationPointRight.transform.position.x + groundWidth, generationPointRight.transform.position.y, generationPointRight.transform.position.z);
             
         }
 

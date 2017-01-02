@@ -22,7 +22,7 @@ public class SeedlingProperties : MonoBehaviour {
         if (gameObject != null)
         {
             Destroy(gameObject);
-            Instantiate(myTree, new Vector3(transform.position.x, transform.position.y + .207f, 0), Quaternion.identity);
+            Instantiate(myTree, new Vector3(transform.position.x, transform.position.y + .257f, 0), Quaternion.identity);
         }
     }
 }
