@@ -7,97 +7,48 @@ using System;
 
 public class ArduinoCommunication : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-        Open();
-        WriteToArduino("PING");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-       // WriteToArduino("PING");
-	}
+    public string port = "COM4";
 
-    /* The serial port where the Arduino is connected. */
-    [Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM3";
-    /* The baudrate of the serial port. */
-    [Tooltip("The baudrate of the serial port")]
-    public int baudrate = 9600;
+    SerialPort myData;
 
-    private SerialPort stream;
 
-    public void Open()
+    void Start()
     {
-        // Opens the serial port
-        stream = new SerialPort(port, baudrate);
-        stream.ReadTimeout = 50;
-        stream.Open();
-        //this.stream.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+    
+        myData = new SerialPort(port, 9600);
+        /**
+		foreach(string str in SerialPort.GetPortNames())
+		{
+			Debug.Log(string.Format("Port : {0}", str));
+		}
+		*/
+        ledOn();
     }
 
-    public void WriteToArduino(string message)
+    void Update()
     {
-        // Send the request
-        stream.WriteLine(message);
-        stream.BaseStream.Flush();
+
     }
 
-    public string ReadFromArduino(int timeout = 0)
+    public void ledOn()
     {
-        stream.ReadTimeout = timeout;
-        try
-        {
-            return stream.ReadLine();
-        }
-        catch (TimeoutException)
-        {
-            return null;
-        }
+        myData.Open(); //Open the Serial Stream.
+                       // Debug.Log ("Com open");
+        myData.WriteLine("ON");
+        // Debug.Log ("Data sendt");
+        myData.Close();
+        // Debug.Log("Com closed");
+    }
+
+    public void ledOff()
+    {
+        myData.Open(); //Open the Serial Stream.
+                       // Debug.Log ("Com open");
+        myData.WriteLine("OFF");
+        // Debug.Log ("Data sendt");
+        myData.Close();
+        // Debug.Log("Com closed");
     }
 
 
-    public IEnumerator AsynchronousReadFromArduino(Action<string> callback, Action fail = null, float timeout = float.PositiveInfinity)
-    {
-        DateTime initialTime = DateTime.Now;
-        DateTime nowTime;
-        TimeSpan diff = default(TimeSpan);
-
-        string dataString = null;
-
-        do
-        {
-            // A single read attempt
-            try
-            {
-                dataString = stream.ReadLine();
-            }
-            catch (TimeoutException)
-            {
-                dataString = null;
-            }
-
-            if (dataString != null)
-            {
-                callback(dataString);
-                yield return null;
-            }
-            else
-                yield return new WaitForSeconds(0.05f);
-
-            nowTime = DateTime.Now;
-            diff = nowTime - initialTime;
-
-        } while (diff.Milliseconds < timeout);
-
-        if (fail != null)
-            fail();
-        yield return null;
-    }
-
-    public void Close()
-    {
-        stream.Close();
-    }
 }
-

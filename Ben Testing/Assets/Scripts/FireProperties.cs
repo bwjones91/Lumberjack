@@ -14,6 +14,8 @@ public class FireProperties : MonoBehaviour {
 
     Animator anim;
 
+    ArduinoCommunication myArduinoCommunication;
+
     public enum FireState
     {
         FireSmall = 0,
@@ -36,7 +38,7 @@ public class FireProperties : MonoBehaviour {
     // Use this for initialization
     void Start () {
         changeFire = false;
-        fireHealth = 100;
+        fireHealth = 10;
         InvokeRepeating("fireHealthDrop", 0f, 1f);
         myFireState = FireState.FireSmall;
         myBoxCollider2D = GetComponent<BoxCollider2D>();
@@ -44,6 +46,7 @@ public class FireProperties : MonoBehaviour {
         random = Random.Range(0.0f, 65535.0f);
         GetComponent<Light>();
         SetHealthText();
+        myArduinoCommunication = GetComponent<ArduinoCommunication>();
     }
 	
 	// Update is called once per frame
@@ -69,6 +72,8 @@ public class FireProperties : MonoBehaviour {
         {
             Destroy(gameObject);
             print("You Lose!!!!");
+            myArduinoCommunication.ledOff();
+            
         }
 
             SetFireState();
